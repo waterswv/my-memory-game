@@ -48,10 +48,22 @@ class Board extends Component {
         return card;
       });
     }
+    const findIDs = (cardsShowing) => {return cardsShowing.map(card => {return card.id})};
+    const foundCards = updateCards(this.state.cards, [id], cardState.SHOWING);
+    const cardsShowing = foundCards.filter(card => card.cardState === cardState.SHOWING);
+    let cardShowingIDs = findIDs(cardsShowing);
+    if(cardsShowing.length < 2)
+      this.setState(foundCards);
+    else if(cardsShowing.length === 2){
+      if(cardsShowing[0].backgroundColor === cardsShowing[1].backgroundColor ){
+        const matchingCards = updateCards(foundCards, cardShowingIDs, cardState.MATCHING);
+        this.setState(matchingCards);
+      }
+      else{
+        console.log('no match')
+      }
+    }
 
-    const foundCard = updateCards(this.state.cards, [id], cardState.SHOWING);
-
-    this.setState(foundCard);
 
 
   }
