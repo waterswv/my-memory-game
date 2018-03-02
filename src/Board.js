@@ -25,8 +25,8 @@ class Board extends Component {
       {id: 9, cardState: cardState.HIDING, backgroundColor: 'Orange'},
       {id: 10, cardState: cardState.HIDING, backgroundColor: 'Black'},
       {id: 11, cardState: cardState.HIDING, backgroundColor: 'Black'},
-      {id: 12, cardState: cardState.MATCHED, backgroundColor: 'Pink'},
-      {id: 13, cardState: cardState.MATCHED, backgroundColor: 'Pink'},
+      {id: 12, cardState: cardState.HIDING, backgroundColor: 'Pink'},
+      {id: 13, cardState: cardState.HIDING, backgroundColor: 'Pink'},
       {id: 14, cardState: cardState.HIDING, backgroundColor: 'Purple'},
       {id: 15, cardState: cardState.HIDING, backgroundColor: 'Purple'},
 
@@ -64,7 +64,7 @@ class Board extends Component {
         setTimeout(() => {
           const resetCards = updateCards(foundCards, cardShowingIDs, cardState.HIDING);
           this.setState(resetCards);
-          
+
         }, 3000);
       }
     }
