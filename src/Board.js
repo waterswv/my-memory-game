@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import shuffle from 'shuffle-array';
 import './Board.css';
+import NavBar from './NavBar';
 
 const cardState = {
   HIDING: 0,
@@ -34,8 +35,17 @@ class Board extends Component {
     cards = shuffle(cards);
     this.state = { cards };
     this.handleClick = this.handleClick.bind(this);
+    this.handleNewGame = this.handleNewGame.bind(this);
   }
+  handleNewGame(){
+    let theCards = this.state.cards.map( (card) => {
 
+      card.cardState = cardState.HIDING;
+      return card;
+    });
+    theCards = shuffle(theCards);
+    this.setState(theCards);
+  }
   handleClick(id){
     const updateCards = (cards, idsToChange, newCardState) => {
       return cards.map(card => {
@@ -83,6 +93,7 @@ class Board extends Component {
     ));
     return (
       <div className="board">
+        <NavBar onNewGame={this.handleNewGame}/>
         {theCards}
       </div>
     );
