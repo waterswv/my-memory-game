@@ -1,15 +1,6 @@
-.board {
-  display: flex;
-   flex-wrap: wrap;
-   flex-direction: column;
-   width: 500px;
-   height: 400px;
-   align-content: space-between;
 
-}
 
-.box{
-
+.box {
   margin: 10px;
   height: 150px;
   min-width: 100px;
@@ -17,5 +8,5 @@
   background-color: grey;
   border: 6px solid grey;
   border-radius: 25px;
-
+  display: inline-block;
 }

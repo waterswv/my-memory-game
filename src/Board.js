@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import shuffle from 'shuffle-array';
 import './Board.css';
+import NavBar from './NavBar';
 
 const cardState = {
   HIDING: 0,
@@ -25,8 +26,8 @@ class Board extends Component {
       {id: 9, cardState: cardState.HIDING, backgroundColor: 'Orange'},
       {id: 10, cardState: cardState.HIDING, backgroundColor: 'Black'},
       {id: 11, cardState: cardState.HIDING, backgroundColor: 'Black'},
-      {id: 12, cardState: cardState.MATCHED, backgroundColor: 'Pink'},
-      {id: 13, cardState: cardState.MATCHED, backgroundColor: 'Pink'},
+      {id: 12, cardState: cardState.HIDING, backgroundColor: 'Pink'},
+      {id: 13, cardState: cardState.HIDING, backgroundColor: 'Pink'},
       {id: 14, cardState: cardState.HIDING, backgroundColor: 'Purple'},
       {id: 15, cardState: cardState.HIDING, backgroundColor: 'Purple'},
 
@@ -34,8 +35,17 @@ class Board extends Component {
     cards = shuffle(cards);
     this.state = { cards };
     this.handleClick = this.handleClick.bind(this);
+    this.handleNewGame = this.handleNewGame.bind(this);
   }
+  handleNewGame(){
+    let theCards = this.state.cards.map( (card) => {
 
+      card.cardState = cardState.HIDING;
+      return card;
+    });
+    theCards = shuffle(theCards);
+    this.setState(theCards);
+  }
   handleClick(id){
     const updateCards = (cards, idsToChange, newCardState) => {
       return cards.map(card => {
@@ -64,7 +74,7 @@ class Board extends Component {
         setTimeout(() => {
           const resetCards = updateCards(foundCards, cardShowingIDs, cardState.HIDING);
           this.setState(resetCards);
-          
+
         }, 3000);
       }
     }
@@ -83,6 +93,7 @@ class Board extends Component {
     ));
     return (
       <div className="board">
+        <NavBar onNewGame={this.handleNewGame}/>
         {theCards}
       </div>
     );
