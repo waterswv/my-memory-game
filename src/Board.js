@@ -60,7 +60,12 @@ class Board extends Component {
         this.setState(matchingCards);
       }
       else{
-        console.log('no match')
+        this.setState(foundCards);
+        setTimeout(() => {
+          const resetCards = updateCards(foundCards, cardShowingIDs, cardState.HIDING);
+          this.setState(resetCards);
+          
+        }, 3000);
       }
     }
 
